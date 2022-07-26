@@ -5,7 +5,7 @@ using UnityEngine;
 public class SwerveMove : MonoBehaviour
 {
     SwerveSystem swerveSystem;
-    [SerializeField] private float swerveSpeed = 5f;
+    [SerializeField] private float swerveSpeed = 0.5f;
     private void Awake()
     {
         swerveSystem = GetComponent<SwerveSystem>();

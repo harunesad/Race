@@ -8,6 +8,8 @@ public class SwerveSystem : MonoBehaviour
     private float moveFactorX;
     public float MoveFactorX => moveFactorX;
     public GameObject playerCar;
+
+    bool rotate = false;
     private void Update()
     {
         System();
@@ -24,24 +26,34 @@ public class SwerveSystem : MonoBehaviour
         //}
         if (Input.GetMouseButtonDown(0))
         {
+            rotate = false;
             lastFrameFingerPositionX = Input.mousePosition.x;
         }
         else if (Input.GetMouseButton(0))
         {
             moveFactorX = Input.mousePosition.x - lastFrameFingerPositionX;
             lastFrameFingerPositionX = Input.mousePosition.x;
-            //if (moveFactorX > 0)
+            if (moveFactorX > 0)
+            {
+                playerCar.transform.Rotate(0, Time.deltaTime * 100, 0);
+            }
+            else if (moveFactorX < 0)
+            {
+                playerCar.transform.Rotate(0, -Time.deltaTime * 100, 0);
+            }
+            //else if (moveFactorX == 0)
             //{
-            //    gameObject.transform.Rotate(0, 2.0f, 0);
-            //}
-            //if (moveFactorX < 0)
-            //{
-            //    gameObject.transform.Rotate(0, -2.0f, 0);
+            //    playerCar.transform.rotation = Quaternion.Lerp(playerCar.transform.rotation, Quaternion.Euler(0, -90, 0), Time.deltaTime * 50);
             //}
         }
         else if (Input.GetMouseButtonUp(0))
         {
             moveFactorX = 0f;
+            rotate = true;
+        }
+        if (rotate)
+        {
+            playerCar.transform.rotation = Quaternion.Lerp(playerCar.transform.rotation, Quaternion.Euler(0, -90, 0), Time.deltaTime * 5);
         }
     }
 }
