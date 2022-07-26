@@ -10,7 +10,7 @@ public class CamFollow : MonoBehaviour
     {
         
     }
-    void FixedUpdate()
+    void LateUpdate()
     {
         transform.position = Vector3.Lerp(transform.position, playerCar.transform.position + offset, Time.deltaTime * 5);
     }
