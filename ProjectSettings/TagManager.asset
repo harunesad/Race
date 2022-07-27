@@ -8,6 +8,8 @@ TagManager:
   - Nitro
   - Boost
   - Ramp
+  - NitroEnemy
+  - Ground
   layers:
   - Default
   - TransparentFX

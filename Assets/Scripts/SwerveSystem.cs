@@ -14,6 +14,7 @@ public class SwerveSystem : MonoBehaviour
     bool rotate = false;
 
     public static SwerveSystem Instance1;
+    public bool moveable=true;
     private void Awake() {
 
         Instance1=this;

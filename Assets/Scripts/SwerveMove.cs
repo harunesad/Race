@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class SwerveMove : MonoBehaviour
 {
-    SwerveSystem swerveSystem;
     [SerializeField] private float swerveSpeed = 0.5f;
+    public SwerveSystem swerveSystem;
     private void Awake()
     {
+        
         swerveSystem = GetComponent<SwerveSystem>();
     }
     private void Update()
@@ -18,7 +19,11 @@ public class SwerveMove : MonoBehaviour
     public void Move()
     {
         float swerveAmount = Time.deltaTime * swerveSpeed * swerveSystem.MoveFactorX;
-        swerveSystem.playerCar.transform.Translate(x: 0, y: 0, z: -swerveAmount);
+        if (swerveSystem.moveable)
+        {
+            swerveSystem.playerCar.transform.Translate(x: 0, y: 0, z: -swerveAmount);
+        }
+        
     }
     private void MovementLimit()
     {
