@@ -375,6 +375,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  forwardMove: 1
 --- !u!114 &211119456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -388,9 +389,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nitroCountText: {fileID: 1448046947}
+  nitroCount: 0
   fixrotation: 0
   ramped: 0
   firstSpeed: 0
+  smallRamp: {fileID: 543450653063794112}
+  mediumRamp: {fileID: 445248095}
+  bigRamp: {fileID: 761315529}
+  fixPosSmall: 0
+  fixPosMedium: 0
+  fixPosBig: 0
 --- !u!64 &211119457
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1541,7 +1549,7 @@ GameObject:
   - component: {fileID: 1121773650}
   m_Layer: 0
   m_Name: 'RampFinish '
-  m_TagString: Untagged
+  m_TagString: RampFinish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1554,10 +1562,10 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1121773649}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 1
+  m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &1121773651
@@ -2491,6 +2499,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedmultiply: 1.5
+  needNitroMultiply: {fileID: 1255929820}
 --- !u!54 &2015433680
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2670,6 +2679,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedmultiply: 1.75
+  needNitroMultiply: {fileID: 937784456}
 --- !u!54 &2078940016
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2880,6 +2890,10 @@ PrefabInstance:
       propertyPath: speedmultiply
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7649532863488329367, guid: ea8090e80753aa7498b89ac450fdddb9, type: 3}
+      propertyPath: needNitroMultiply
+      value: 
+      objectReference: {fileID: 58929739}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea8090e80753aa7498b89ac450fdddb9, type: 3}
 --- !u!4 &543450653063794112 stripped

@@ -1,18 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Ramp : MonoBehaviour
 {
     public float speedmultiply;
+    public TextMeshProUGUI needNitroMultiply;
      private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log(gameObject.name + " entered Trigger tagged " + other.gameObject.name);
-            SwerveSystem.Instance1.moveable=false;
-           Trigger.Instance.firstSpeed=PlayerCarForward.Instance.speed;
+           //Trigger.Instance.firstSpeed=PlayerCarForward.Instance.speed;
             RampBoost(speedmultiply);
+            if (Trigger.Instance.nitroCount >= System.Convert.ToInt32(needNitroMultiply.text))
+            {
+                PlayerCarForward.Instance.forwardMove = true;
+                Trigger.Instance.nitroCount = Trigger.Instance.nitroCount - System.Convert.ToInt32(needNitroMultiply.text);
+                Trigger.Instance.nitroCountText.text = "" + Trigger.Instance.nitroCount;
+            }
+            else
+            {
+                PlayerCarForward.Instance.forwardMove = false;
+            }
+            Trigger.Instance.fixPosSmall = false;
+            Trigger.Instance.fixPosMedium = false;
+            Trigger.Instance.fixPosBig = false;
+            Debug.Log(System.Convert.ToInt32(needNitroMultiply.text));
         }
 
         if (other.gameObject.CompareTag("NitroEnemy"))

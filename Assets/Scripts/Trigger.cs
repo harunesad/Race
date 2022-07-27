@@ -5,12 +5,17 @@ using UnityEngine.UI;
 
 public class Trigger : MonoBehaviour
 {
-    [SerializeField] Text nitroCountText;
+    public Text nitroCountText;
     public static Trigger Instance;
-    int nitroCount;
+    public int nitroCount;
     public bool fixrotation=false;
     public bool ramped=false;
     public float firstSpeed;
+    float posX;
+    public Transform smallRamp, mediumRamp, bigRamp;
+    float small,medium,big;
+    float nearRamp;
+    public bool fixPosSmall = false, fixPosMedium = false, fixPosBig = false;
 
     void Awake() 
     {
@@ -19,6 +24,7 @@ public class Trigger : MonoBehaviour
     void Start()
     {
         nitroCountText.text = "" + nitroCount;
+        firstSpeed = PlayerCarForward.Instance.speed;
     }
     void Update()
     {
@@ -27,6 +33,19 @@ public class Trigger : MonoBehaviour
         // {
         //     Debug.Log("Bounds intersecting");
         // }
+        if (fixPosSmall)
+        {
+            transform.position = Vector3.Lerp(transform.position, new Vector3(smallRamp.position.x, transform.position.y, transform.position.z), Time.deltaTime * 5);
+        }
+        if (fixPosMedium)
+        {
+            transform.position = Vector3.Lerp(transform.position, new Vector3(mediumRamp.position.x, transform.position.y, transform.position.z), Time.deltaTime * 5);
+        }
+        if (fixPosBig)
+        {
+            transform.position = Vector3.Lerp(transform.position, new Vector3(bigRamp.position.x, transform.position.y, transform.position.z), Time.deltaTime * 5);
+        }
+
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -54,19 +73,34 @@ public class Trigger : MonoBehaviour
             Debug.Log("Ground değdi");
             PlayerCarForward.Instance.speed = firstSpeed;
         }
+        if (other.gameObject.CompareTag("RampFinish"))
+        {
+            Debug.Log("dsa");
+            SwerveSystem.Instance1.moveable = false;
+            posX = transform.position.x;
+            small = smallRamp.position.x - posX;
+            medium = mediumRamp.position.x - posX;
+            big = bigRamp.position.x - posX;
+            nearRamp = Mathf.Min(Mathf.Abs(small), Mathf.Abs(medium), Mathf.Abs(big));
+            //fixPos = true;
+            if (nearRamp == Mathf.Abs(small))
+            {
+                Debug.Log("s");
+                fixPosSmall = true;
+            }
+            if (nearRamp == Mathf.Abs(medium))
+            {
+                Debug.Log("s");
+
+                fixPosMedium = true;
+            }
+            if (nearRamp == Mathf.Abs(big))
+            {
+                Debug.Log("s");
+                fixPosBig = true;
+            }
+        }
     }
-
-    //  private void OnCollisionEnter(Collision other) 
-    // {
-    //     if (other.gameObject.CompareTag("Ramp")&&!ramped)
-    //     {
-    //        firstSpeed=PlayerCarForward.Instance.speed;
-    //         RampBoost(1.5f);
-    //         ramped=true;
-    //     }
-
-
-    // }
 
     IEnumerator Boost(float speed)
     {
