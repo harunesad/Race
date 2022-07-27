@@ -17,6 +17,6 @@ public class LevelProgress : MonoBehaviour
     void Update()
     {
         distanceUpdate = distance / playerCar.transform.position.z;
-        levelBar.fillAmount = 1 - 1 / Mathf.Abs(distanceUpdate);
+        levelBar.fillAmount =  1 / Mathf.Abs(distanceUpdate);
     }
 }

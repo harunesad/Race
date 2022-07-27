@@ -35,15 +35,15 @@ public class Trigger : MonoBehaviour
         // }
         if (fixPosSmall)
         {
-            transform.position = Vector3.Lerp(transform.position, new Vector3(smallRamp.position.x, transform.position.y, transform.position.z), Time.deltaTime * 5);
+            transform.position = Vector3.Lerp(transform.position, new Vector3(smallRamp.position.x, transform.position.y, transform.position.z), Time.deltaTime * 7.5f);
         }
         if (fixPosMedium)
         {
-            transform.position = Vector3.Lerp(transform.position, new Vector3(mediumRamp.position.x, transform.position.y, transform.position.z), Time.deltaTime * 5);
+            transform.position = Vector3.Lerp(transform.position, new Vector3(mediumRamp.position.x, transform.position.y, transform.position.z), Time.deltaTime * 7.5f);
         }
         if (fixPosBig)
         {
-            transform.position = Vector3.Lerp(transform.position, new Vector3(bigRamp.position.x, transform.position.y, transform.position.z), Time.deltaTime * 5);
+            transform.position = Vector3.Lerp(transform.position, new Vector3(bigRamp.position.x, transform.position.y, transform.position.z), Time.deltaTime * 7.5f);
         }
 
     }
@@ -107,7 +107,7 @@ public class Trigger : MonoBehaviour
         ramped=true;
         firstSpeed=PlayerCarForward.Instance.speed;
         PlayerCarForward.Instance.speed *= speed;
-        yield return new WaitForSecondsRealtime(2);
+        yield return new WaitForSeconds(2f);
         PlayerCarForward.Instance.speed =firstSpeed;
         ramped=false;
     }

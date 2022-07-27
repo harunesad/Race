@@ -18,7 +18,15 @@ public class SwerveMove : MonoBehaviour
     }
     public void Move()
     {
-        float swerveAmount = Time.deltaTime * swerveSpeed * swerveSystem.MoveFactorX;
+           if (swerveSystem.moveFactorX>75)
+           {
+             swerveSystem.moveFactorX=75;
+           }
+           else if(swerveSystem.moveFactorX<-75)
+           {
+                swerveSystem.moveFactorX=-75;
+           }
+        float swerveAmount = Time.deltaTime * swerveSpeed * swerveSystem.moveFactorX;
         if (swerveSystem.moveable)
         {
             swerveSystem.playerCar.transform.Translate(x: 0, y: 0, z: -swerveAmount);

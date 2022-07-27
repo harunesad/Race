@@ -70,6 +70,7 @@ public class Spawner : MonoBehaviour
         GameObject new_clone = Instantiate(object1);
         GameObject new_clone2 = Instantiate(object2);
         int randomNumber = Random.Range(0,99);
+        Debug.Log(randomNumber);
         int randomforEnemy;
         if (randomNumber<33)
         {

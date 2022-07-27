@@ -9,7 +9,6 @@ public class SwerveSystem : MonoBehaviour
     public float MoveFactorX => moveFactorX;
     public GameObject playerCar;
     public float y1;
-    private float xMin = -0.5f, xMax = 0.5f;
 
     bool rotate = false;
 
@@ -42,6 +41,7 @@ public class SwerveSystem : MonoBehaviour
         }
         else if (Input.GetMouseButton(0))
         {
+
             moveFactorX = Input.mousePosition.x - lastFrameFingerPositionX;
             lastFrameFingerPositionX = Input.mousePosition.x;
             // if (moveFactorX > 0)
