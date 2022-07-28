@@ -42,10 +42,7 @@ public class CarAi : MonoBehaviour
                 targetPositionTranform = spawner.nitroEnemys[0].transform;
             }
         }
-        if (spawner.nitroEnemys[0].transform == null)
-        {
-            spawner.nitroEnemys.Add(GameObject.FindGameObjectsWithTag("Waypoint"))
-        }
+        
     }
     void Boost(Collider other)
     {
