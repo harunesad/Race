@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.UI;
 
 public class CarAi : MonoBehaviour
 {
@@ -9,6 +10,13 @@ public class CarAi : MonoBehaviour
     [SerializeField] List<Transform> waypoints = new List<Transform>();
     [SerializeField] float xSpeed = 0;
     [SerializeField] float zSpeed = 5;
+    public int nitroCount;
+    public Text nitroCountText;
+    Spawner spawner;
+    private void Awake()
+    {
+        spawner = GetComponentInChildren<Spawner>();
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -20,43 +28,66 @@ public class CarAi : MonoBehaviour
     {
         Movement();    
     }
-    void WayPoint(Collider other)
+    void CollectingNitro(Collider other)
     {
-        if (other.gameObject.CompareTag("Waypoint"))
+        if (other.gameObject.CompareTag("NitroEnemy"))
         {
-            waypoints.Remove(waypoints[0]);
+            nitroCount++;
+            nitroCountText.text = "" + nitroCount;
+            spawner.nitroEnemys.Remove(spawner.nitroEnemys[0]);
             targetPositionTranform = null;
             Destroy(other.gameObject);
-            if (targetPositionTranform == null && waypoints.Count > 0)
+            if (targetPositionTranform == null && spawner.nitroEnemys.Count > 0)
             {
-                targetPositionTranform = waypoints[0];
+                targetPositionTranform = spawner.nitroEnemys[0].transform;
             }
+        }
+        if (spawner.nitroEnemys[0].transform == null)
+        {
+            spawner.nitroEnemys.Add(GameObject.FindGameObjectsWithTag("Waypoint"))
+        }
+    }
+    void Boost(Collider other)
+    {
+        if (other.gameObject.CompareTag("Boost"))
+        {
+
+            StartCoroutine(BoostTime());
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        WayPoint(other);
+        CollectingNitro(other);
+        Boost(other);
     }
     private void Movement()
     {
-        if (waypoints.Count > 0)
+        if (spawner.nitroEnemys.Count > 0)
         {
             transform.Translate(xSpeed * Time.deltaTime, 0, zSpeed * Time.deltaTime);
-            if (waypoints[0].position.x > transform.position.x)
+            if (spawner.nitroEnemys[0].transform.position.x > transform.position.x)
             {
                 xSpeed = 10f;
             }
-            else if (waypoints[0].position.x < transform.position.x)
+            else if (spawner.nitroEnemys[0].transform.position.x < transform.position.x)
             {
                 xSpeed = -10f;
             }
-            float distance = Mathf.Abs(waypoints[0].position.x - transform.position.x);
+            float distance = Mathf.Abs(spawner.nitroEnemys[0].transform.position.x - transform.position.x);
             if (distance < 0.1f)
             {
                 xSpeed = 0;
             }
         }
         
+    }
+    IEnumerator BoostTime()
+    {
+        float zSpeedBeforeBoost = zSpeed;
+        zSpeed = zSpeed * 2;
+        yield return new WaitForSeconds(1f);
+        zSpeed = zSpeedBeforeBoost;
+
     }
 }
