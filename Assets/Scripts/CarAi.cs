@@ -17,7 +17,7 @@ public class CarAi : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Movement();
+        Movement();    
     }
     void WayPoint(Collider other)
     {
@@ -50,7 +50,8 @@ public class CarAi : MonoBehaviour
             {
                 xSpeed = -10f;
             }
-            else
+            float distance = Mathf.Abs(waypoints[0].position.x - transform.position.x);
+            if (distance < 0.1f)
             {
                 Debug.Log("0");
                 xSpeed = 0;
