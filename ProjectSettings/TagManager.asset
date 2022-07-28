@@ -11,6 +11,7 @@ TagManager:
   - NitroEnemy
   - Ground
   - RampFinish
+  - Waypoint
   layers:
   - Default
   - TransparentFX
