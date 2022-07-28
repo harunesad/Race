@@ -1,16 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class Spawner : MonoBehaviour
 {
     public GameObject nitroPlayer;
     public GameObject nitroEnemy;
-    public GameObject[] nitroPlayers;
-    public GameObject[] nitroEnemys;
-    float right_X = 2.5f;
-    float middle_X = 0f;
-    float left_X = -2.5f;
+    public List<GameObject> nitroPlayers = new List<GameObject>();
+    public List<GameObject> nitroEnemys = new List<GameObject>();
+    public float right_X = 2.5f;
+    public float middle_X = 0f;
+    public float left_X = -2.5f;
     void Start()
     {
         for (int i = 2; i < 15; i++)  
@@ -22,32 +23,44 @@ public class Spawner : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        nitroPlayers = GameObject.FindGameObjectsWithTag("Nitro");
-        nitroEnemys = GameObject.FindGameObjectsWithTag("NitroEnemy");
-        foreach (GameObject nitroPlayer in nitroPlayers)
-        {
-            if (nitroPlayer.transform.position.z<SwerveSystem.Instance1.playerCar.transform.position.z)
+    {        
+        foreach (GameObject nitroPlayer in nitroPlayers.ToList())
+        { 
+            if (nitroPlayer == null)
             {
-                // Debug.Log("Destroyed nitroPlayers");
-                Destroy(nitroPlayer,2f);
+                nitroPlayers.Remove(nitroPlayer);
+            }
+            else 
+            {
+                
+                if (nitroPlayer.transform.position.z<this.transform.position.z)
+                {
+                    // Debug.Log("Destroyed nitroPlayers");
+                     Destroy(nitroPlayer,2f);
+                    nitroPlayers.Remove(nitroPlayer);
+                    
+                }
             }
         }
 
-        foreach (GameObject nitroEnemy in nitroEnemys)
+        foreach (GameObject nitroEnemy in nitroEnemys.ToList())
         {
-            if (nitroEnemy.transform.position.z<SwerveSystem.Instance1.playerCar.transform.position.z)
+            if (nitroEnemy == null)
             {
-                // Debug.Log("Destroyed nitroEnemy");
-                Destroy(nitroEnemy,2f);
+                nitroEnemys.Remove(nitroEnemy);
+            }
+            else 
+            {
+                if (nitroEnemy.transform.position.z<this.transform.position.z)
+                {
+                    // Debug.Log("Destroyed nitroEnemy");
+                    Destroy(nitroEnemy,2f);
+                    nitroEnemys.Remove(nitroEnemy);
+                    
+                }
             }
         }
 
-        // if (nitroEnemys.transform.position.z<SwerveSystem.Instance1.playerCar.transform.position.z)
-        // {
-        //     Destroy(nitroEnemys,0f);
-        //     Debug.Log("Destroyed nitroEnemys");
-        // }
     }
 
     IEnumerator Iobject_clone(float z_coordinate)
@@ -68,9 +81,10 @@ public class Spawner : MonoBehaviour
     void clone(GameObject object1,GameObject object2,float z_coordinate)
     {
         GameObject new_clone = Instantiate(object1);
+        nitroPlayers.Add(new_clone);
         GameObject new_clone2 = Instantiate(object2);
+        nitroEnemys.Add(new_clone2);
         int randomNumber = Random.Range(0,99);
-        Debug.Log(randomNumber);
         int randomforEnemy;
         if (randomNumber<33)
         {

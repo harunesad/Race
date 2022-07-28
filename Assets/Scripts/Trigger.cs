@@ -54,11 +54,14 @@ public class Trigger : MonoBehaviour
             nitroCount++;
             nitroCountText.text = "" + nitroCount;
             Destroy(other.gameObject);
+            this.GetComponent<Spawner>().nitroPlayers.Remove(other.gameObject);
         }
 
         if (other.gameObject.CompareTag("NitroEnemy"))
         {
+            
             Destroy(other.gameObject);
+            this.GetComponent<Spawner>().nitroEnemys.Remove(other.gameObject);
         }
         
         if (other.gameObject.CompareTag("Boost")&&!ramped)

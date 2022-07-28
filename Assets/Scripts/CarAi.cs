@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class CarAi : MonoBehaviour
 {
@@ -53,7 +54,6 @@ public class CarAi : MonoBehaviour
             float distance = Mathf.Abs(waypoints[0].position.x - transform.position.x);
             if (distance < 0.1f)
             {
-                Debug.Log("0");
                 xSpeed = 0;
             }
         }
