@@ -6,15 +6,19 @@ using UnityEngine.UI;
 
 public class CarAi : MonoBehaviour
 {
+    public static CarAi Instance;
+    public bool fixedRotation = false;
     [SerializeField] Transform targetPositionTranform;
     [SerializeField] List<Transform> waypoints = new List<Transform>();
     [SerializeField] float xSpeed = 0;
-    [SerializeField] float zSpeed = 5;
+    public float zSpeed = 5;
     public int nitroCount;
     public Text nitroCountText;
+    private bool rampAI = false;
     Spawner spawner;
     private void Awake()
     {
+        Instance = this;
         spawner = GetComponentInChildren<Spawner>();
     }
     // Start is called before the first frame update
@@ -46,7 +50,7 @@ public class CarAi : MonoBehaviour
     }
     void Boost(Collider other)
     {
-        if (other.gameObject.CompareTag("Boost"))
+        if (other.gameObject.CompareTag("Boost") && !rampAI)
         {
 
             StartCoroutine(BoostTime());
@@ -60,9 +64,9 @@ public class CarAi : MonoBehaviour
     }
     private void Movement()
     {
+        transform.Translate(xSpeed * Time.deltaTime, 0, zSpeed * Time.deltaTime);
         if (spawner.nitroEnemys.Count > 0)
         {
-            transform.Translate(xSpeed * Time.deltaTime, 0, zSpeed * Time.deltaTime);
             if (spawner.nitroEnemys[0].transform.position.x > transform.position.x)
             {
                 xSpeed = 10f;
@@ -78,13 +82,22 @@ public class CarAi : MonoBehaviour
             }
         }
         
+
+        if (fixedRotation)
+        {
+            Debug.Log("adad");
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, 0), Time.deltaTime * 10f);
+        }
+        
+        
     }
     IEnumerator BoostTime()
     {
+        rampAI = true;
         float zSpeedBeforeBoost = zSpeed;
         zSpeed = zSpeed * 2;
         yield return new WaitForSeconds(1f);
         zSpeed = zSpeedBeforeBoost;
-
+        rampAI = false;
     }
 }

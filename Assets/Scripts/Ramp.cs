@@ -12,7 +12,7 @@ public class Ramp : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
            //Trigger.Instance.firstSpeed=PlayerCarForward.Instance.speed;
-            RampBoost(speedmultiply);
+            RampBoostPlayer(speedmultiply);
             if (Trigger.Instance.nitroCount >= System.Convert.ToInt32(needNitroMultiply.text))
             {
                 PlayerCarForward.Instance.forwardMove = true;
@@ -33,6 +33,16 @@ public class Ramp : MonoBehaviour
         {
             Destroy(other.gameObject);
         }
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            RampBoostAI(speedmultiply);
+            CarAi.Instance.nitroCount = CarAi.Instance.nitroCount - System.Convert.ToInt32(needNitroMultiply.text);
+            CarAi.Instance.nitroCountText.text = "" + CarAi.Instance.nitroCount;
+            EnemyRamp.Instance.fixPosSmall = false;
+            EnemyRamp.Instance.fixPosMedium = false;
+            EnemyRamp.Instance.fixPosBig = false;
+
+        }
         
     }
         private void OnTriggerExit(Collider other) 
@@ -47,12 +57,19 @@ public class Ramp : MonoBehaviour
             // }
             // this.gameObject.transform.rotation=Quaternion.Lerp(gameObject.transform.rotation, Quaternion.Euler(0, -90, 0), Time.deltaTime * 5);
         }
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            CarAi.Instance.fixedRotation = true;
+        }
 
     }
 
-    void RampBoost(float speed)
+    void RampBoostPlayer(float speed)
     {
-        Debug.Log("Hız arttırıldı");
         PlayerCarForward.Instance.speed *= speed;
+    }
+    void RampBoostAI(float speed)
+    {
+        CarAi.Instance.zSpeed *= speed;
     }
 }
