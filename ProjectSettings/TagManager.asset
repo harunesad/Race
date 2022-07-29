@@ -12,6 +12,7 @@ TagManager:
   - Ground
   - RampFinish
   - Waypoint
+  - Enemy
   layers:
   - Default
   - TransparentFX
