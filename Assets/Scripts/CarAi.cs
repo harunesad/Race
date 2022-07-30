@@ -16,6 +16,7 @@ public class CarAi : MonoBehaviour
     public Text nitroCountText;
     private bool rampAI = false;
     Spawner spawner;
+    float aiBoostNeedNitro = 2;
     private void Awake()
     {
         Instance = this;
@@ -95,7 +96,12 @@ public class CarAi : MonoBehaviour
     {
         rampAI = true;
         float zSpeedBeforeBoost = zSpeed;
-        zSpeed = zSpeed * 2;
+        if (nitroCount >= aiBoostNeedNitro)
+        {
+            nitroCount -= 2;
+            nitroCountText.text = "" + nitroCount;
+            zSpeed = zSpeed * 2;
+        }
         yield return new WaitForSeconds(1f);
         zSpeed = zSpeedBeforeBoost;
         rampAI = false;

@@ -16,6 +16,7 @@ public class Trigger : MonoBehaviour
     float small,medium,big;
     float nearRamp;
     public bool fixPosSmall = false, fixPosMedium = false, fixPosBig = false;
+    float boostNeedNitro = 2;
 
     void Awake() 
     {
@@ -108,8 +109,13 @@ public class Trigger : MonoBehaviour
     IEnumerator Boost(float speed)
     {
         ramped=true;
-        firstSpeed=PlayerCarForward.Instance.speed;
-        PlayerCarForward.Instance.speed *= speed;
+        firstSpeed = PlayerCarForward.Instance.speed;
+        if (nitroCount >= boostNeedNitro)
+        {
+            nitroCount -= 2;
+            nitroCountText.text = "" + nitroCount;
+            PlayerCarForward.Instance.speed *= speed;
+        }
         yield return new WaitForSeconds(2f);
         PlayerCarForward.Instance.speed =firstSpeed;
         ramped=false;
