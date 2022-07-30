@@ -41,7 +41,7 @@ public class Ramp : MonoBehaviour
             EnemyRamp.Instance.fixPosSmall = false;
             EnemyRamp.Instance.fixPosMedium = false;
             EnemyRamp.Instance.fixPosBig = false;
-
+            Debug.Log("sa");
         }
         
     }

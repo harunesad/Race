@@ -75,7 +75,7 @@ public class Trigger : MonoBehaviour
         {
             SwerveSystem.Instance1.moveable=true;
             Debug.Log("Ground değdi");
-            PlayerCarForward.Instance.speed = firstSpeed;
+            //PlayerCarForward.Instance.speed = firstSpeed;
         }
         if (other.gameObject.CompareTag("RampFinish"))
         {
