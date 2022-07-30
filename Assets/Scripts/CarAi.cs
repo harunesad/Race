@@ -17,6 +17,7 @@ public class CarAi : MonoBehaviour
     private bool rampAI = false;
     Spawner spawner;
     float aiBoostNeedNitro = 2;
+    public bool aiForwardMove = true;
     private void Awake()
     {
         Instance = this;
@@ -65,7 +66,10 @@ public class CarAi : MonoBehaviour
     }
     private void Movement()
     {
-        transform.Translate(xSpeed * Time.deltaTime, 0, zSpeed * Time.deltaTime);
+        if (aiForwardMove)
+        {
+            transform.Translate(xSpeed * Time.deltaTime, 0, zSpeed * Time.deltaTime);
+        }
         if (spawner.nitroEnemys.Count > 0)
         {
             if (spawner.nitroEnemys[0].transform.position.x > transform.position.x)

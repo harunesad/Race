@@ -22,6 +22,7 @@ public class Ramp : MonoBehaviour
             else
             {
                 PlayerCarForward.Instance.forwardMove = false;
+                StartCoroutine(LevelProgress.instance.Restart());
             }
             Trigger.Instance.fixPosSmall = false;
             Trigger.Instance.fixPosMedium = false;
