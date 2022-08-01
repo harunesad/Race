@@ -14,7 +14,7 @@ public class Spawner : MonoBehaviour
     public float left_X = -2.5f;
     void Start()
     {
-        for (int i = 2; i < 15; i++)  
+        for (int i = 2; i < 26; i++)  
         {
             int z=10*i;  //10
             object_clone(z);

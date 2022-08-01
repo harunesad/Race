@@ -108,7 +108,7 @@ public class CarAi : MonoBehaviour
         {
             nitroCount -= 2;
             nitroCountText.text = "" + nitroCount;
-            zSpeed = zSpeed * 2;
+            zSpeed = zSpeed * 1.3f;
         }
         yield return new WaitForSeconds(1f);
         zSpeed = zSpeedBeforeBoost;
