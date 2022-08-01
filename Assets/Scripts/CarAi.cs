@@ -48,6 +48,10 @@ public class CarAi : MonoBehaviour
                 targetPositionTranform = spawner.nitroEnemys[0].transform;
             }
         }
+        if (other.gameObject.CompareTag("Nitro"))
+        {
+            Destroy(other.gameObject);
+        }
         
     }
     void Boost(Collider other)
