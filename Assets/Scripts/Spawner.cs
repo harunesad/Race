@@ -67,7 +67,7 @@ public class Spawner : MonoBehaviour
     {
         
         int randomNumber = Random.Range(0,100);
-        if (randomNumber>0 && randomNumber<75)
+        if (randomNumber>0 && randomNumber<90)
         {
             clone(nitroPlayer,nitroEnemy,z_coordinate);
         }
