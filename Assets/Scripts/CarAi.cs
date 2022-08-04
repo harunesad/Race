@@ -17,6 +17,7 @@ public class CarAi : MonoBehaviour
     private bool rampAI = false;
     Spawner spawner;
     float aiBoostNeedNitro = 2;
+    float zSpeedBeforeBoost;
     public bool aiForwardMove = true;
     private void Awake()
     {
@@ -27,6 +28,7 @@ public class CarAi : MonoBehaviour
     void Start()
     {
         xSpeed = 0;
+        zSpeedBeforeBoost = zSpeed;
     }
 
     // Update is called once per frame
@@ -103,7 +105,7 @@ public class CarAi : MonoBehaviour
     IEnumerator BoostTime()
     {
         rampAI = true;
-        float zSpeedBeforeBoost = zSpeed;
+        
         if (nitroCount >= aiBoostNeedNitro)
         {
             nitroCount -= 2;
@@ -113,5 +115,12 @@ public class CarAi : MonoBehaviour
         yield return new WaitForSeconds(1f);
         zSpeed = zSpeedBeforeBoost;
         rampAI = false;
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            zSpeed = zSpeedBeforeBoost;
+        }
     }
 }
