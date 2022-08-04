@@ -78,19 +78,24 @@ public class CarAi : MonoBehaviour
         }
         if (spawner.nitroEnemys.Count > 0)
         {
-            if (spawner.nitroEnemys[0].transform.position.x > transform.position.x)
-            {
-                xSpeed = 10f;
-            }
-            else if (spawner.nitroEnemys[0].transform.position.x < transform.position.x)
-            {
-                xSpeed = -10f;
-            }
             float distance = Mathf.Abs(spawner.nitroEnemys[0].transform.position.x - transform.position.x);
-            if (distance < 0.1f)
+            if (distance < 3f)
             {
-                xSpeed = 0;
+                if (spawner.nitroEnemys[0].transform.position.x > transform.position.x)
+                {
+                    xSpeed = 10f;
+                }
+                else if (spawner.nitroEnemys[0].transform.position.x < transform.position.x)
+                {
+                    xSpeed = -10f;
+                }
+
+                if (distance < 0.1f)
+                {
+                    xSpeed = 0;
+                }
             }
+            
         }
         
 
@@ -116,11 +121,5 @@ public class CarAi : MonoBehaviour
         zSpeed = zSpeedBeforeBoost;
         rampAI = false;
     }
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            zSpeed = zSpeedBeforeBoost;
-        }
-    }
+   
 }

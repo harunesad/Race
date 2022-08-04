@@ -67,10 +67,12 @@ public class Ramp : MonoBehaviour
 
     void RampBoostPlayer(float speed)
     {
-        PlayerCarForward.Instance.speed *= speed;
+        PlayerCarForward.Instance.speed += speed;
     }
     void RampBoostAI(float speed)
     {
-        CarAi.Instance.zSpeed *= speed;
+        Debug.Log("carpma");
+
+        CarAi.Instance.zSpeed += speed;
     }
 }
