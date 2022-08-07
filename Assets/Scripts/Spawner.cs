@@ -9,12 +9,14 @@ public class Spawner : MonoBehaviour
     public GameObject nitroEnemy;
     public List<GameObject> nitroPlayers = new List<GameObject>();
     public List<GameObject> nitroEnemys = new List<GameObject>();
+    public List<GameObject> nitroEnemys2 = new List<GameObject>();
     public float right_X = 2.5f;
     public float middle_X = 0f;
     public float left_X = -2.5f;
+    public int i;
     void Start()
     {
-        for (int i = 2; i < 26; i++)  
+        for (i = 2; i < 27; i++)  
         {
             int z=10*i;  //10
             object_clone(z);
@@ -54,9 +56,30 @@ public class Spawner : MonoBehaviour
                 if (nitroEnemy.transform.position.z<this.transform.position.z)
                 {
                     // Debug.Log("Destroyed nitroEnemy");
-                    Destroy(nitroEnemy,2f);
+                    Destroy(nitroEnemy, 2f);
                     nitroEnemys.Remove(nitroEnemy);
                     
+                    
+                    
+                }
+            }
+        }
+        foreach (GameObject nitroEnemy in nitroEnemys2.ToList())
+        {
+            if (nitroEnemy == null)
+            {
+                nitroEnemys2.Remove(nitroEnemy);
+            }
+            else
+            {
+                if (nitroEnemy.transform.position.z < this.transform.position.z)
+                {
+                    // Debug.Log("Destroyed nitroEnemy");
+                    Destroy(nitroEnemy);
+                    nitroEnemys2.Remove(nitroEnemy);
+                    
+
+
                 }
             }
         }
@@ -83,7 +106,15 @@ public class Spawner : MonoBehaviour
         GameObject new_clone = Instantiate(object1);
         nitroPlayers.Add(new_clone);
         GameObject new_clone2 = Instantiate(object2);
-        nitroEnemys.Add(new_clone2);
+        if (i < 15)
+        {
+            nitroEnemys.Add(new_clone2);
+        }
+        else
+        {
+            nitroEnemys2.Add(new_clone2);
+        }
+        
         int randomNumber = Random.Range(0,99);
         int randomforEnemy;
         if (randomNumber<33)

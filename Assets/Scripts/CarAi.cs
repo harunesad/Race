@@ -19,6 +19,7 @@ public class CarAi : MonoBehaviour
     float aiBoostNeedNitro = 2;
     float zSpeedBeforeBoost;
     public bool aiForwardMove = true;
+    bool collideWithGround = false;
     private void Awake()
     {
         Instance = this;
@@ -29,6 +30,7 @@ public class CarAi : MonoBehaviour
     {
         xSpeed = 0;
         zSpeedBeforeBoost = zSpeed;
+        
     }
 
     // Update is called once per frame
@@ -40,15 +42,31 @@ public class CarAi : MonoBehaviour
     {
         if (other.gameObject.CompareTag("NitroEnemy"))
         {
-            nitroCount++;
-            nitroCountText.text = "" + nitroCount;
-            spawner.nitroEnemys.Remove(spawner.nitroEnemys[0]);
-            targetPositionTranform = null;
-            Destroy(other.gameObject);
-            if (targetPositionTranform == null && spawner.nitroEnemys.Count > 0)
+            if (spawner.nitroEnemys.Count > 0)
             {
-                targetPositionTranform = spawner.nitroEnemys[0].transform;
+                nitroCount++;
+                nitroCountText.text = "" + nitroCount;
+                spawner.nitroEnemys.Remove(spawner.nitroEnemys[0]);
+                targetPositionTranform = null;
+                Destroy(other.gameObject);
+                if (targetPositionTranform == null && spawner.nitroEnemys.Count > 0)
+                {
+                    targetPositionTranform = spawner.nitroEnemys[0].transform;
+                }
             }
+            if (spawner.nitroEnemys2.Count > 0 && collideWithGround)
+            {
+                nitroCount++;
+                nitroCountText.text = "" + nitroCount;
+                spawner.nitroEnemys2.Remove(spawner.nitroEnemys2[0]);
+                targetPositionTranform = null;
+                Destroy(other.gameObject);
+                if (targetPositionTranform == null && spawner.nitroEnemys2.Count > 0)
+                {
+                    targetPositionTranform = spawner.nitroEnemys2[0].transform;
+                }
+            }
+
         }
         if (other.gameObject.CompareTag("Nitro"))
         {
@@ -60,7 +78,7 @@ public class CarAi : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Boost") && !rampAI)
         {
-
+            Debug.Log("boost");
             StartCoroutine(BoostTime());
         }
     }
@@ -69,6 +87,12 @@ public class CarAi : MonoBehaviour
     {
         CollectingNitro(other);
         Boost(other);
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            collideWithGround = true;
+            Debug.Log(collideWithGround);
+        }
+
     }
     private void Movement()
     {
@@ -76,16 +100,43 @@ public class CarAi : MonoBehaviour
         {
             transform.Translate(xSpeed * Time.deltaTime, 0, zSpeed * Time.deltaTime);
         }
+        else
+        {
+            zSpeed = 0;
+        }
         if (spawner.nitroEnemys.Count > 0)
         {
             float distance = Mathf.Abs(spawner.nitroEnemys[0].transform.position.x - transform.position.x);
-            if (distance < 3f)
+            if (spawner.nitroEnemys[0].transform.position.x > transform.position.x)
             {
-                if (spawner.nitroEnemys[0].transform.position.x > transform.position.x)
+                xSpeed = 10f;
+            }
+            else if (spawner.nitroEnemys[0].transform.position.x < transform.position.x)
+            {
+                xSpeed = -10f;
+            }
+
+            if (distance < 0.1f)
+            {
+                xSpeed = 0;
+            }
+
+        }
+        else if(!collideWithGround)
+        {
+            
+            xSpeed = 0;
+        }
+        if (collideWithGround)
+        {
+            if (spawner.nitroEnemys2.Count > 0)
+            {
+                float distance = Mathf.Abs(spawner.nitroEnemys2[0].transform.position.x - transform.position.x);
+                if (spawner.nitroEnemys2[0].transform.position.x > transform.position.x)
                 {
                     xSpeed = 10f;
                 }
-                else if (spawner.nitroEnemys[0].transform.position.x < transform.position.x)
+                else if (spawner.nitroEnemys2[0].transform.position.x < transform.position.x)
                 {
                     xSpeed = -10f;
                 }
@@ -94,9 +145,10 @@ public class CarAi : MonoBehaviour
                 {
                     xSpeed = 0;
                 }
+
             }
-            
         }
+        
         
 
         if (fixedRotation)
@@ -115,11 +167,16 @@ public class CarAi : MonoBehaviour
         {
             nitroCount -= 2;
             nitroCountText.text = "" + nitroCount;
-            zSpeed = zSpeed * 1.3f;
+            zSpeed = zSpeed * 1.5f;
         }
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         zSpeed = zSpeedBeforeBoost;
         rampAI = false;
     }
-   
+    private void OnCollisionEnter(Collision collision)
+    {
+        
+    }
+
+
 }

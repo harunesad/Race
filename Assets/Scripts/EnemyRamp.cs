@@ -25,15 +25,15 @@ public class EnemyRamp : MonoBehaviour
     {
         if (fixPosSmall)
         {
-            transform.position = Vector3.Lerp(transform.position, new Vector3(smallRampAI.position.x, transform.position.y, transform.position.z), Time.deltaTime * 7.5f);
+            transform.position = Vector3.Lerp(transform.position, new Vector3(smallRampAI.position.x, transform.position.y, transform.position.z), Time.deltaTime * 10f);
         }
         if (fixPosMedium)
         {
-            transform.position = Vector3.Lerp(transform.position, new Vector3(mediumRampAI.position.x, transform.position.y, transform.position.z), Time.deltaTime * 7.5f);
+            transform.position = Vector3.Lerp(transform.position, new Vector3(mediumRampAI.position.x, transform.position.y, transform.position.z), Time.deltaTime * 10f);
         }
         if (fixPosBig)
         {
-            transform.position = Vector3.Lerp(transform.position, new Vector3(bigRampAI.position.x, transform.position.y, transform.position.z), Time.deltaTime * 7.5f);
+            transform.position = Vector3.Lerp(transform.position, new Vector3(bigRampAI.position.x, transform.position.y, transform.position.z), Time.deltaTime * 10f);
         }
     }
     private void OnTriggerEnter(Collider other)
