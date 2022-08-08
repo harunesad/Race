@@ -3831,8 +3831,8 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 51627d449f59c344fb634459672e42ad, type: 3}
   m_PrefabInstance: {fileID: 1059450}
   m_PrefabAsset: {fileID: 0}
---- !u!64 &1156192283
-MeshCollider:
+--- !u!65 &1156192283
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -3841,10 +3841,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -462981019419857548, guid: 51627d449f59c344fb634459672e42ad, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 2, y: 2.03, z: 0.84}
+  m_Center: {x: 0, y: 0, z: -0.05000001}
 --- !u!1 &1171552265
 GameObject:
   m_ObjectHideFlags: 0
@@ -4026,8 +4025,8 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 51627d449f59c344fb634459672e42ad, type: 3}
   m_PrefabInstance: {fileID: 1172272864}
   m_PrefabAsset: {fileID: 0}
---- !u!64 &1172272866
-MeshCollider:
+--- !u!65 &1172272866
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -4036,10 +4035,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -462981019419857548, guid: 51627d449f59c344fb634459672e42ad, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 2, y: 2.03, z: 0.84}
+  m_Center: {x: 0, y: 0, z: -0.05000001}
 --- !u!1001 &1173026389
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4382,8 +4380,8 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 51627d449f59c344fb634459672e42ad, type: 3}
   m_PrefabInstance: {fileID: 1247989201}
   m_PrefabAsset: {fileID: 0}
---- !u!64 &1247989203
-MeshCollider:
+--- !u!65 &1247989207
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -4392,10 +4390,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -462981019419857548, guid: 51627d449f59c344fb634459672e42ad, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 2, y: 2.03, z: 0.84}
+  m_Center: {x: 0, y: 0, z: -0.05000001}
 --- !u!1 &1254891545
 GameObject:
   m_ObjectHideFlags: 0
