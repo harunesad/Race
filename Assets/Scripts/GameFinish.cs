@@ -30,6 +30,7 @@ public class GameFinish : MonoBehaviour
             nextLevel.SetActive(true);
             PlayerCarForward.Instance.forwardMove = false;
             CarAi.Instance.aiForwardMove = false;
+            SwerveSystem.Instance1.moveable = false;
         }
         if (other.gameObject.CompareTag("Enemy"))
         {
@@ -38,6 +39,7 @@ public class GameFinish : MonoBehaviour
             CarAi.Instance.aiForwardMove = false;
             Debug.Log("ai win");
             gameEndText.text = "You Lose";
+            SwerveSystem.Instance1.moveable = false;
         }
     }
     public void NextLevel()
