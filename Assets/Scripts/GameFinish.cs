@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 
@@ -13,17 +14,59 @@ public class GameFinish : MonoBehaviour
     [SerializeField] GameObject nextLevel;
     [SerializeField] GameObject tryAgain;
     [SerializeField] TextMeshProUGUI gameEndText;
+
+    public Text currentLevelText;
+    public Text nextLevelText;
+
+    public int currentLevelCount;
+    public int nextLevelCount;
+
+    string currentLevelKey = "CurrentLevel";
+    string nextLevelKey = "NextLevel";
     private void Awake()
     {
         if (instance == null)
         {
             instance = this;
         }
+        if (!PlayerPrefs.HasKey(currentLevelKey))
+        {
+            currentLevelCount = 1;
+            currentLevelText.text = currentLevelCount.ToString();
+            PlayerPrefs.SetInt(currentLevelKey, currentLevelCount);
+        }
+        else
+        {
+            currentLevelCount = PlayerPrefs.GetInt(currentLevelKey);
+            currentLevelText.text = currentLevelCount.ToString();
+        }
+        if (!PlayerPrefs.HasKey(nextLevelKey))
+        {
+            nextLevelCount = 2;
+            nextLevelText.text = nextLevelCount.ToString();
+            PlayerPrefs.SetInt(nextLevelKey, nextLevelCount);
+        }
+        else
+        {
+            nextLevelCount = PlayerPrefs.GetInt(nextLevelKey);
+            nextLevelText.text = nextLevelCount.ToString();
+        }
+    }
+    private void Start()
+    {
+        currentLevelCount = PlayerPrefs.GetInt(currentLevelKey);
+        nextLevelCount = PlayerPrefs.GetInt(nextLevelKey);
+        //PlayerPrefs.SetInt(currentLevelKey, currentLevelCount);
+        //PlayerPrefs.SetInt(nextLevelKey, nextLevelCount);
+        currentLevelText.text = currentLevelCount.ToString();
+        nextLevelText.text = nextLevelCount.ToString();
     }
     private void OnTriggerEnter(Collider other)
     {
         gameEndMenu.SetActive(true);
         levelProgress.SetActive(false);
+        currentLevelText.gameObject.SetActive(false);
+        nextLevelText.gameObject.SetActive(false);
         if (other.gameObject.CompareTag("Player"))
         {
             gameEndParticle.Play();
@@ -42,12 +85,16 @@ public class GameFinish : MonoBehaviour
             SwerveSystem.Instance1.moveable = false;
         }
     }
-    public void NextLevel()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-    }
     public void Reload()
     {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    public void NextLevel()
+    {
+        currentLevelCount++;
+        nextLevelCount++;
+        PlayerPrefs.SetInt(currentLevelKey, currentLevelCount);
+        PlayerPrefs.SetInt(nextLevelKey, nextLevelCount);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

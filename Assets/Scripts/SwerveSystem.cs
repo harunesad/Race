@@ -81,7 +81,7 @@ public class SwerveSystem : MonoBehaviour
         }
         if (rotate||Trigger.Instance.fixrotation)
         {
-            playerCar.transform.rotation = Quaternion.Lerp(playerCar.transform.rotation, Quaternion.Euler(0, -90, 0), Time.deltaTime * 10f);
+            playerCar.transform.rotation = Quaternion.Lerp(playerCar.transform.rotation, Quaternion.Euler(0, -90, 0), Time.deltaTime * 7f);
         }
 
         

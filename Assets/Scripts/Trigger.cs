@@ -10,7 +10,7 @@ public class Trigger : MonoBehaviour
     public int nitroCount;
     public bool fixrotation=false;
     public bool ramped=false;
-    public float firstSpeed;
+    //public float firstSpeed;
     float posX;
     public Transform smallRamp, mediumRamp, bigRamp;
     float small,medium,big;
@@ -25,7 +25,7 @@ public class Trigger : MonoBehaviour
     void Start()
     {
         nitroCountText.text = "" + nitroCount;
-        firstSpeed = PlayerCarForward.Instance.speed;
+        //firstSpeed = PlayerCarForward.Instance.speed;
     }
     void Update()
     {
@@ -108,16 +108,17 @@ public class Trigger : MonoBehaviour
 
     IEnumerator Boost(float speed)
     {
-        ramped=true;
-        firstSpeed = PlayerCarForward.Instance.speed;
+        ramped = true;
+        //firstSpeed = PlayerCarForward.Instance.speed;
         if (nitroCount >= boostNeedNitro)
         {
             nitroCount -= 2;
             nitroCountText.text = "" + nitroCount;
-            PlayerCarForward.Instance.speed *= speed;
+            PlayerCarForward.Instance.speed += speed;
         }
         yield return new WaitForSeconds(2f);
-        PlayerCarForward.Instance.speed =firstSpeed;
+        PlayerCarForward.Instance.speed -= speed;
+        //PlayerCarForward.Instance.speed =firstSpeed;
         ramped=false;
     }
 

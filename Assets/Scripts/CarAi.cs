@@ -17,7 +17,7 @@ public class CarAi : MonoBehaviour
     private bool rampAI = false;
     Spawner spawner;
     float aiBoostNeedNitro = 2;
-    float zSpeedBeforeBoost;
+    //float zSpeedBeforeBoost;
     public bool aiForwardMove = true;
     bool collideWithGround = false;
     private void Awake()
@@ -29,7 +29,7 @@ public class CarAi : MonoBehaviour
     void Start()
     {
         xSpeed = 0;
-        zSpeedBeforeBoost = zSpeed;
+        //zSpeedBeforeBoost = zSpeed;
         
     }
 
@@ -154,7 +154,7 @@ public class CarAi : MonoBehaviour
         if (fixedRotation)
         {
             Debug.Log("adad");
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, 0), Time.deltaTime * 10f);
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, 0), Time.deltaTime * 7);
         }
         
         
@@ -167,10 +167,11 @@ public class CarAi : MonoBehaviour
         {
             nitroCount -= 2;
             nitroCountText.text = "" + nitroCount;
-            zSpeed = zSpeed * 1.5f;
+            zSpeed = zSpeed + 5;
         }
         yield return new WaitForSeconds(2f);
-        zSpeed = zSpeedBeforeBoost;
+        //zSpeed = zSpeedBeforeBoost;
+        zSpeed = zSpeed - 5;
         rampAI = false;
     }
     private void OnCollisionEnter(Collision collision)

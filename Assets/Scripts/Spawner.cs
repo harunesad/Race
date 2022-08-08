@@ -5,6 +5,7 @@ using System.Linq;
 
 public class Spawner : MonoBehaviour
 {
+    public static Spawner instance;
     public GameObject nitroPlayer;
     public GameObject nitroEnemy;
     public List<GameObject> nitroPlayers = new List<GameObject>();
@@ -14,6 +15,10 @@ public class Spawner : MonoBehaviour
     public float middle_X = 0f;
     public float left_X = -2.5f;
     public int i;
+    private void Awake()
+    {
+        instance = this;
+    }
     void Start()
     {
         for (i = 2; i < 27; i++)  
