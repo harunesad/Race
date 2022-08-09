@@ -68,7 +68,7 @@ public class Trigger : MonoBehaviour
         
         if (other.gameObject.CompareTag("Boost")&&!ramped)
         {
-            StartCoroutine(Boost(1.5f));
+            StartCoroutine(Boost(5));
             
         }
 
