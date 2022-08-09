@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Trigger : MonoBehaviour
 {
     public Text nitroCountText;
+    float speedBeforeOil;
     public static Trigger Instance;
     public int nitroCount;
     public bool fixrotation=false;
@@ -104,6 +105,11 @@ public class Trigger : MonoBehaviour
                 fixPosBig = true;
             }
         }
+        if (other.gameObject.CompareTag("Oil"))
+        {
+
+            StartCoroutine(Oil());
+        }
     }
 
     IEnumerator Boost(float speed)
@@ -120,6 +126,14 @@ public class Trigger : MonoBehaviour
         PlayerCarForward.Instance.speed -= speed;
         //PlayerCarForward.Instance.speed =firstSpeed;
         ramped=false;
+    }
+    IEnumerator Oil()
+    {
+        speedBeforeOil = PlayerCarForward.Instance.speed;
+        PlayerCarForward.Instance.speed -= 3f;
+        yield return new WaitForSeconds(1.3f);
+        PlayerCarForward.Instance.speed = speedBeforeOil;
+
     }
 
 
