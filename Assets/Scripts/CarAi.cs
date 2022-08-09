@@ -20,6 +20,7 @@ public class CarAi : MonoBehaviour
     //float zSpeedBeforeBoost;
     public bool aiForwardMove = true;
     bool collideWithGround = false;
+    float speedBeforeOil;
     private void Awake()
     {
         Instance = this;
@@ -91,6 +92,10 @@ public class CarAi : MonoBehaviour
         {
             collideWithGround = true;
             Debug.Log(collideWithGround);
+        }
+        if (other.gameObject.CompareTag("Oil"))
+        {
+           StartCoroutine(Oil());
         }
 
     }
@@ -174,9 +179,25 @@ public class CarAi : MonoBehaviour
         zSpeed = zSpeed - 5;
         rampAI = false;
     }
-    private void OnCollisionEnter(Collision collision)
+    IEnumerator Oil()
     {
+        speedBeforeOil = zSpeed;
+        if (zSpeed <= 10f)
+        {
+            zSpeed -= 3f;
+        }
+        else if(zSpeed > 10f && zSpeed < 15f)
+        {
+            zSpeed -= 5f;
+        }
+        else if(zSpeed > 15f)
+        {
+            zSpeed -= 8f;
+        }
         
+        yield return new WaitForSeconds(1.3f);
+        zSpeed = speedBeforeOil;
+
     }
 
 

@@ -130,7 +130,19 @@ public class Trigger : MonoBehaviour
     IEnumerator Oil()
     {
         speedBeforeOil = PlayerCarForward.Instance.speed;
-        PlayerCarForward.Instance.speed -= 3f;
+        if (PlayerCarForward.Instance.speed <= 10f)
+        {
+            PlayerCarForward.Instance.speed -= 3f;
+        }
+        else if (PlayerCarForward.Instance.speed > 10f && PlayerCarForward.Instance.speed < 15f)
+        {
+            PlayerCarForward.Instance.speed -= 5f;
+        }
+        else if (PlayerCarForward.Instance.speed > 15f)
+        {
+            PlayerCarForward.Instance.speed -= 8f;
+        }
+    
         yield return new WaitForSeconds(1.3f);
         PlayerCarForward.Instance.speed = speedBeforeOil;
 
