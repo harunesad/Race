@@ -105,7 +105,7 @@ public class Trigger : MonoBehaviour
                 fixPosBig = true;
             }
         }
-        if (other.gameObject.CompareTag("Oil"))
+        if (other.gameObject.CompareTag("Oil")&&!ramped)
         {
 
             StartCoroutine(Oil());
@@ -129,6 +129,7 @@ public class Trigger : MonoBehaviour
     }
     IEnumerator Oil()
     {
+        ramped = true;
         speedBeforeOil = PlayerCarForward.Instance.speed;
         if (PlayerCarForward.Instance.speed <= 10f)
         {
@@ -145,6 +146,7 @@ public class Trigger : MonoBehaviour
     
         yield return new WaitForSeconds(1.3f);
         PlayerCarForward.Instance.speed = speedBeforeOil;
+        ramped=false;
 
     }
 
