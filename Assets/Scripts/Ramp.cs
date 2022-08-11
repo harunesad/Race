@@ -11,7 +11,6 @@ public class Ramp : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-           //Trigger.Instance.firstSpeed=PlayerCarForward.Instance.speed;
             RampBoostPlayer(speedmultiply);
             if (Trigger.Instance.nitroCount >= System.Convert.ToInt32(needNitroMultiply.text))
             {
@@ -42,7 +41,6 @@ public class Ramp : MonoBehaviour
             EnemyRamp.Instance.fixPosSmall = false;
             EnemyRamp.Instance.fixPosMedium = false;
             EnemyRamp.Instance.fixPosBig = false;
-            Debug.Log("sa");
         }
         
     }
@@ -51,28 +49,18 @@ public class Ramp : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             Trigger.Instance.fixrotation=true;
-            // Debug.Log("Debug1");
-            // if(other.gameObject.CompareTag("Ground"))
-            // {   Debug.Log("Debug");
-            //     PlayerCarForward.Instance.speed = firstSpeed;
-            // }
-            // this.gameObject.transform.rotation=Quaternion.Lerp(gameObject.transform.rotation, Quaternion.Euler(0, -90, 0), Time.deltaTime * 5);
         }
         if (other.gameObject.CompareTag("Enemy"))
         {
             CarAi.Instance.fixedRotation = true;
         }
-
     }
-
     void RampBoostPlayer(float speed)
     {
         PlayerCarForward.Instance.speed += speed;
     }
     void RampBoostAI(float speed)
     {
-        Debug.Log("carpma");
-
         CarAi.Instance.zSpeed += speed;
     }
 }

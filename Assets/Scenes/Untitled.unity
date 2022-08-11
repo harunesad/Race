@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1336,7 +1336,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 9
+  m_text: 7
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 519110b9e62a8544991552b295379473, type: 2}
   m_sharedMaterial: {fileID: 5923194736783028016, guid: 519110b9e62a8544991552b295379473, type: 2}
@@ -2015,7 +2015,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 7
+  m_text: '6
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 519110b9e62a8544991552b295379473, type: 2}
   m_sharedMaterial: {fileID: 5923194736783028016, guid: 519110b9e62a8544991552b295379473, type: 2}
@@ -2669,7 +2671,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 461157dd718d8d644969d0ccad765963, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedmultiply: 9
+  speedmultiply: 7
   needNitroMultiply: {fileID: 1627002711}
 --- !u!64 &497429890
 MeshCollider:
@@ -3268,7 +3270,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 7
+  m_text: 6
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 519110b9e62a8544991552b295379473, type: 2}
   m_sharedMaterial: {fileID: 5923194736783028016, guid: 519110b9e62a8544991552b295379473, type: 2}
@@ -3933,7 +3935,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 9
+  m_text: '7
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 519110b9e62a8544991552b295379473, type: 2}
   m_sharedMaterial: {fileID: 5923194736783028016, guid: 519110b9e62a8544991552b295379473, type: 2}
@@ -4148,7 +4152,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 7
+  m_text: 6
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 519110b9e62a8544991552b295379473, type: 2}
   m_sharedMaterial: {fileID: 5923194736783028016, guid: 519110b9e62a8544991552b295379473, type: 2}
@@ -4986,13 +4990,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fixedRotation: 0
   targetPositionTranform: {fileID: 0}
-  waypoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   xSpeed: 10
   zSpeed: 10
   nitroCount: 0
@@ -5116,7 +5113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 461157dd718d8d644969d0ccad765963, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedmultiply: 9
+  speedmultiply: 7
   needNitroMultiply: {fileID: 714845310}
 --- !u!64 &803506457
 MeshCollider:
@@ -5563,7 +5560,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 9
+  m_text: '7
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 519110b9e62a8544991552b295379473, type: 2}
   m_sharedMaterial: {fileID: 5923194736783028016, guid: 519110b9e62a8544991552b295379473, type: 2}
@@ -7719,7 +7718,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 7
+  m_text: '6
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 519110b9e62a8544991552b295379473, type: 2}
   m_sharedMaterial: {fileID: 5923194736783028016, guid: 519110b9e62a8544991552b295379473, type: 2}
@@ -8860,7 +8861,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 461157dd718d8d644969d0ccad765963, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedmultiply: 9
+  speedmultiply: 7
   needNitroMultiply: {fileID: 253851035}
 --- !u!64 &1462888251
 MeshCollider:
@@ -8914,7 +8915,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 461157dd718d8d644969d0ccad765963, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedmultiply: 7
+  speedmultiply: 6
   needNitroMultiply: {fileID: 623548698}
 --- !u!64 &1468365990
 MeshCollider:
@@ -9688,7 +9689,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 9
+  m_text: 7
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 519110b9e62a8544991552b295379473, type: 2}
   m_sharedMaterial: {fileID: 5923194736783028016, guid: 519110b9e62a8544991552b295379473, type: 2}
@@ -9787,7 +9788,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 461157dd718d8d644969d0ccad765963, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedmultiply: 7
+  speedmultiply: 6
   needNitroMultiply: {fileID: 443531440}
 --- !u!64 &1635994138
 MeshCollider:
@@ -11278,7 +11279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 461157dd718d8d644969d0ccad765963, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedmultiply: 7
+  speedmultiply: 6
   needNitroMultiply: {fileID: 719352653}
 --- !u!64 &1973211440
 MeshCollider:
@@ -11341,7 +11342,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 461157dd718d8d644969d0ccad765963, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedmultiply: 7
+  speedmultiply: 6
   needNitroMultiply: {fileID: 1255929820}
 --- !u!54 &2015433680
 Rigidbody:
@@ -11821,7 +11822,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 461157dd718d8d644969d0ccad765963, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedmultiply: 9
+  speedmultiply: 7
   needNitroMultiply: {fileID: 937784456}
 --- !u!54 &2078940016
 Rigidbody:

@@ -8,9 +8,11 @@ public class Spawner : MonoBehaviour
     public static Spawner instance;
     public GameObject nitroPlayer;
     public GameObject nitroEnemy;
+
     public List<GameObject> nitroPlayers = new List<GameObject>();
     public List<GameObject> nitroEnemys = new List<GameObject>();
     public List<GameObject> nitroEnemys2 = new List<GameObject>();
+
     public float right_X = 2.5f;
     public float middle_X = 0f;
     public float left_X = -2.5f;
@@ -23,12 +25,10 @@ public class Spawner : MonoBehaviour
     {
         for (i = 2; i < 27; i++)  
         {
-            int z=10*i;  //10
+            int z=10*i;  
             object_clone(z);
         }
     }
-
-    // Update is called once per frame
     void Update()
     {        
         foreach (GameObject nitroPlayer in nitroPlayers.ToList())
@@ -39,17 +39,13 @@ public class Spawner : MonoBehaviour
             }
             else 
             {
-                
                 if (nitroPlayer.transform.position.z<this.transform.position.z)
                 {
-                    // Debug.Log("Destroyed nitroPlayers");
                      Destroy(nitroPlayer,2f);
                     nitroPlayers.Remove(nitroPlayer);
-                    
                 }
             }
         }
-
         foreach (GameObject nitroEnemy in nitroEnemys.ToList())
         {
             if (nitroEnemy == null)
@@ -60,12 +56,8 @@ public class Spawner : MonoBehaviour
             {
                 if (nitroEnemy.transform.position.z<this.transform.position.z)
                 {
-                    // Debug.Log("Destroyed nitroEnemy");
                     Destroy(nitroEnemy, 2f);
                     nitroEnemys.Remove(nitroEnemy);
-                    
-                    
-                    
                 }
             }
         }
@@ -79,21 +71,14 @@ public class Spawner : MonoBehaviour
             {
                 if (nitroEnemy.transform.position.z < this.transform.position.z)
                 {
-                    // Debug.Log("Destroyed nitroEnemy");
                     Destroy(nitroEnemy);
                     nitroEnemys2.Remove(nitroEnemy);
-                    
-
-
                 }
             }
         }
-
     }
-
     IEnumerator Iobject_clone(float z_coordinate)
     {
-        
         int randomNumber = Random.Range(0,100);
         if (randomNumber>0 && randomNumber<90)
         {
@@ -119,7 +104,6 @@ public class Spawner : MonoBehaviour
         {
             nitroEnemys2.Add(new_clone2);
         }
-        
         int randomNumber = Random.Range(0,99);
         int randomforEnemy;
         if (randomNumber<33)
@@ -144,9 +128,6 @@ public class Spawner : MonoBehaviour
             randomforEnemy=Random.Range(0,1);
              new_clone.transform.position = new Vector3(left_X, 0.2f, z_coordinate);
         }
-
-
-        //enemyNitro
         if (randomforEnemy==0)
         {
            new_clone2.transform.position = new Vector3(right_X, 0.2f, z_coordinate);
@@ -159,9 +140,5 @@ public class Spawner : MonoBehaviour
         {
              new_clone2.transform.position = new Vector3(left_X, 0.2f, z_coordinate);
         }
-
-
-
-
     }
 }

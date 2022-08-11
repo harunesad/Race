@@ -56,8 +56,6 @@ public class GameFinish : MonoBehaviour
     {
         currentLevelCount = PlayerPrefs.GetInt(currentLevelKey);
         nextLevelCount = PlayerPrefs.GetInt(nextLevelKey);
-        //PlayerPrefs.SetInt(currentLevelKey, currentLevelCount);
-        //PlayerPrefs.SetInt(nextLevelKey, nextLevelCount);
         currentLevelText.text = currentLevelCount.ToString();
         nextLevelText.text = nextLevelCount.ToString();
     }
@@ -80,7 +78,6 @@ public class GameFinish : MonoBehaviour
             tryAgain.SetActive(true);
             PlayerCarForward.Instance.forwardMove = false;
             CarAi.Instance.aiForwardMove = false;
-            Debug.Log("ai win");
             gameEndText.text = "You Lose";
             SwerveSystem.Instance1.moveable = false;
         }

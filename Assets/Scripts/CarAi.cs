@@ -8,16 +8,19 @@ public class CarAi : MonoBehaviour
 {
     public static CarAi Instance;
     public bool fixedRotation = false;
+
     [SerializeField] Transform targetPositionTranform;
-    [SerializeField] List<Transform> waypoints = new List<Transform>();
     [SerializeField] float xSpeed = 0;
+
     public float zSpeed = 5;
     public int nitroCount;
+
     public Text nitroCountText;
     private bool rampAI = false;
+
     Spawner spawner;
     float aiBoostNeedNitro = 2;
-    //float zSpeedBeforeBoost;
+
     public bool aiForwardMove = true;
     bool collideWithGround = false;
     float speedBeforeOil;
@@ -26,15 +29,10 @@ public class CarAi : MonoBehaviour
         Instance = this;
         spawner = GetComponentInChildren<Spawner>();
     }
-    // Start is called before the first frame update
     void Start()
     {
-        xSpeed = 0;
-        //zSpeedBeforeBoost = zSpeed;
-        
+        xSpeed = 0;        
     }
-
-    // Update is called once per frame
     void Update()
     {
         Movement();    
@@ -49,7 +47,6 @@ public class CarAi : MonoBehaviour
                 nitroCountText.text = "" + nitroCount;
                 spawner.nitroEnemys.Remove(spawner.nitroEnemys[0]);
                 targetPositionTranform = null;
-                Destroy(other.gameObject);
                 if (targetPositionTranform == null && spawner.nitroEnemys.Count > 0)
                 {
                     targetPositionTranform = spawner.nitroEnemys[0].transform;
@@ -67,23 +64,19 @@ public class CarAi : MonoBehaviour
                     targetPositionTranform = spawner.nitroEnemys2[0].transform;
                 }
             }
-
         }
         if (other.gameObject.CompareTag("Nitro"))
         {
             Destroy(other.gameObject);
-        }
-        
+        }        
     }
     void Boost(Collider other)
     {
         if (other.gameObject.CompareTag("Boost") && !rampAI)
         {
-            Debug.Log("boost");
             StartCoroutine(BoostTime());
         }
     }
-
     private void OnTriggerEnter(Collider other)
     {
         CollectingNitro(other);
@@ -91,13 +84,11 @@ public class CarAi : MonoBehaviour
         if (other.gameObject.CompareTag("Ground"))
         {
             collideWithGround = true;
-            Debug.Log(collideWithGround);
         }
         if (other.gameObject.CompareTag("Oil"))
         {
            StartCoroutine(Oil());
         }
-
     }
     private void Movement()
     {
@@ -120,16 +111,13 @@ public class CarAi : MonoBehaviour
             {
                 xSpeed = -10f;
             }
-
             if (distance < 0.1f)
             {
                 xSpeed = 0;
             }
-
         }
         else if(!collideWithGround)
-        {
-            
+        {          
             xSpeed = 0;
         }
         if (collideWithGround)
@@ -145,29 +133,20 @@ public class CarAi : MonoBehaviour
                 {
                     xSpeed = -10f;
                 }
-
                 if (distance < 0.1f)
                 {
                     xSpeed = 0;
                 }
-
             }
         }
-        
-        
-
         if (fixedRotation)
         {
-            Debug.Log("adad");
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, 0), Time.deltaTime * 7);
         }
-        
-        
     }
     IEnumerator BoostTime()
     {
         rampAI = true;
-        
         if (nitroCount >= aiBoostNeedNitro)
         {
             nitroCount -= 2;
@@ -175,7 +154,6 @@ public class CarAi : MonoBehaviour
             zSpeed = zSpeed + 5;
         }
         yield return new WaitForSeconds(2f);
-        //zSpeed = zSpeedBeforeBoost;
         zSpeed = zSpeed - 5;
         rampAI = false;
     }
@@ -194,11 +172,7 @@ public class CarAi : MonoBehaviour
         {
             zSpeed -= 8f;
         }
-        
         yield return new WaitForSeconds(1.3f);
         zSpeed = speedBeforeOil;
-
     }
-
-
 }

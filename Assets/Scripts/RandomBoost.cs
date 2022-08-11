@@ -5,6 +5,7 @@ using UnityEngine;
 public class RandomBoost : MonoBehaviour
 {
     float posX, posZ;
+
     [SerializeField] float minPosX, maxPosX;
     [SerializeField] float minPosZ, maxPosZ;
     void Start()
